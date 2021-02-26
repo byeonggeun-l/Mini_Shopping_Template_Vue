@@ -3,6 +3,7 @@
         :class="btnClass"
         :data-key="btnDataKey"
         :data-value="btnDataValue"
+        @click="click"
     >
         <img
             :v-if="imgSrc != ''"
@@ -67,14 +68,21 @@ export default {
     },
     data() {
         return {
-            currentUrl: ''
+            currentUrl: '',
         };
     },
+    emits: [
+        'click'
+    ],
     created() {},
     mounted() {
         this.currentUrl = window.location.href;
     },
-    methods: {}
+    methods: {
+        click(){
+            this.$emit('click', this.btnDataKey, this.btnDataValue);
+        }
+    }
 };
 </script>
 

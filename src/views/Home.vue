@@ -5,57 +5,71 @@
             class="logo"
             alt="Logo"
             :src="currentUrl + 'img/logo.png'"
+            @click="sortAll"
         >
 
         <!-- Buttons -->
         <section class="buttons">
             <Button
                 :btn-class="'btn'"
+                :btn-data-key="'type'"
+                :btn-data-value="'tshirt'"
                 :img-src="'img/blue_t.png'"
                 :img-alt="'tshirt'"
                 :img-class="'imgBtn'"
                 :img-data-key="'type'"
                 :img-data-value="'tshirt'"
+                @click="selectSort"
             />
             <Button
                 :btn-class="'btn'"
+                :btn-data-key="'type'"
+                :btn-data-value="'pants'"
                 :img-src="'img/blue_p.png'"
                 :img-alt="'pants'"
                 :img-class="'imgBtn'"
                 :img-data-key="'type'"
                 :img-data-value="'pants'"
+                @click="selectSort"
             />
             <Button
                 :btn-class="'btn'"
+                :btn-data-key="'type'"
+                :btn-data-value="'skirt'"
                 :img-src="'img/blue_s.png'"
                 :img-alt="'skirt'"
                 :img-class="'imgBtn'"
                 :img-data-key="'type'"
                 :img-data-value="'skirt'"
+                @click="selectSort"
             />
             <Button
                 :btn-class="'btn colorBtn blue'"
                 :btn-data-key="'color'"
                 :btn-data-value="'blue'"
                 :inner-text="'Blue'"
+                @click="selectSort"
             />
             <Button
                 :btn-class="'btn colorBtn yellow'"
                 :btn-data-key="'color'"
                 :btn-data-value="'yellow'"
                 :inner-text="'Yellow'"
+                @click="selectSort"
             />
             <Button
                 :btn-class="'btn colorBtn pink'"
                 :btn-data-key="'color'"
                 :btn-data-value="'pink'"
                 :inner-text="'Pink'"
+                @click="selectSort"
             />
         </section>
         
         <ul class="items">
             <Item
                 :items-array="itemsInfo"
+                :sort-state="sortState"
             />
         </ul>
     </div>
@@ -77,6 +91,11 @@ export default {
         return {
             itemsInfo: [],
             currentUrl: '',
+            sortState:
+                { 
+                    sortKey:'all',
+                    sortValue:'all'
+                },
         };
     },
     mounted() {
@@ -90,13 +109,22 @@ export default {
                 tempArr[0].forEach(element => {
                     this.itemsInfo.push(element);
                 });
-                console.log(this.itemsInfo);
             })
             .catch(error => {
                 console.log(error);
             })
             .then(() => {});
     },
+    methods: {
+        sortAll(){
+            this.sortState.sortKey = 'all';
+            this.sortState.sortValue = 'all';
+        },
+        selectSort(key, value){
+            this.sortState.sortKey = key;
+            this.sortState.sortValue = value;
+        }
+    }
 };
 </script>
 
