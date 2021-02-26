@@ -16,7 +16,7 @@
   <button :class="btnClass">
     <img
       :v-if="imgSrc != ''"
-      :src="imgSrc"
+      :src="currentUrl + imgSrc"
       :alt="imgAlt"
       :class="imgClass"
       :data-key="imgDataKey"
@@ -75,10 +75,19 @@ export default {
       default: "",
     }
   },
+  data() {
+    return {
+      currentUrl:'',
+
+    }
+  },
   created () {
   },
+  mounted(){
+    this.currentUrl = window.location.href;
+  },
   methods: {
-  }
+  },
 };
 </script>
 

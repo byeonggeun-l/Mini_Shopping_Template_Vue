@@ -4,14 +4,14 @@
     <img
       class="logo" 
       alt="Logo" 
-      src="/img/logo.png"
+      :src="this.currentUrl + 'img/logo.png'"
     >
 
     <!-- Buttons -->
     <section class="buttons">
       <Button
         :btn-class="'btn'" 
-        :img-src="'/img/blue_t.png'"
+        :img-src="'img/blue_t.png'"
         :img-alt="'tshirt'"
         :img-class="'imgBtn'"
         :img-data-key="'type'"
@@ -19,7 +19,7 @@
       />
       <Button
         :btn-class="'btn'" 
-        :img-src="'/img/blue_p.png'"
+        :img-src="'img/blue_p.png'"
         :img-alt="'pants'"
         :img-class="'imgBtn'"
         :img-data-key="'type'"
@@ -27,7 +27,7 @@
       />
       <Button
         :btn-class="'btn'" 
-        :img-src="'/img/blue_s.png'"
+        :img-src="'img/blue_s.png'"
         :img-alt="'skirt'"
         :img-class="'imgBtn'"
         :img-data-key="'type'"
@@ -68,12 +68,16 @@ export default {
     name: 'Home',
     components: { Button },
     data() {
-        return { itemsInfo: [] };
+        return { 
+            itemsInfo: [],
+            currentUrl:'',
+        };
     },
     mounted() {
-        console.log("window.location.href : " + window.location.href);
+        this.currentUrl = window.location.href;
+
         axios
-            .get(window.location.href + 'data/data.json')
+            .get(this.currentUrl + 'data/data.json')
             .then(response => {
                 // const dataJson = JSON.stringify(response);
                 const tempArr = Object.values(response.data);
