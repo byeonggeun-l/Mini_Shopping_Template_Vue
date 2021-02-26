@@ -1,0 +1,87 @@
+<template>
+  <!-- 이미지 포함 버튼 -->
+  <!-- <button class="btn">
+    <img
+      src="../assets/img/blue_t.png"
+      alt="tshirt"
+      class="imgBtn"
+      data-key="type"
+      data-value="tshirt"
+    />
+  </button> -->
+  <!-- 이미지 미포함 버튼
+    <button class="btn colorBtn blue" data-key="color" data-value="blue">
+        Blue
+    </button> -->
+  <button :class="btnClass">
+    <img
+      :v-if="imgSrc != ''"
+      :src="imgSrc"
+      :alt="imgAlt"
+      :class="imgClass"
+      :data-key="imgDataKey"
+      :data-value="imgDataValue"
+    >
+    {{ innerText }}
+  </button>
+</template>
+
+<script>
+export default {
+  name: "Button",
+  props: {
+    btnClass: {
+      type: String,
+      required: true,
+    },
+    btnDataKey: {
+      type: String,
+      required: false,
+      default: "",
+    },
+    btnDataValue: {
+      type: String,
+      required: false,
+      default: "",
+    },
+    imgSrc: {
+      type: String,
+      required: false,
+      default: "",
+    },
+    imgAlt: {
+      type: String,
+      required: false,
+      default: "",
+    },
+    imgClass: {
+      type: String,
+      required: false,
+      default: "",
+    },
+    imgDataKey: {
+      type: String,
+      required: false,
+      default: "",
+    },
+    imgDataValue: {
+      type: String,
+      required: false,
+      default: "",
+    },
+    innerText:{
+      type: String,
+      required: false,
+      default: "",
+    }
+  },
+  created () {
+  },
+  methods: {
+  }
+};
+</script>
+
+<style>
+
+</style>
