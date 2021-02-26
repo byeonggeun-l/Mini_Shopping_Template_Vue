@@ -71,6 +71,7 @@ export default {
         return { itemsInfo: [] };
     },
     mounted() {
+        console.log("window.location.href : " + window.location.href);
         axios
             .get(window.location.href + 'data/data.json')
             .then(response => {
