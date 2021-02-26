@@ -1,96 +1,81 @@
 <template>
-  <!-- 이미지 포함 버튼 -->
-  <!-- <button class="btn">
-    <img
-      src="../assets/img/blue_t.png"
-      alt="tshirt"
-      class="imgBtn"
-      data-key="type"
-      data-value="tshirt"
-    />
-  </button> -->
-  <!-- 이미지 미포함 버튼
-    <button class="btn colorBtn blue" data-key="color" data-value="blue">
-        Blue
-    </button> -->
-  <button :class="btnClass">
-    <img
-      :v-if="imgSrc != ''"
-      :src="currentUrl + imgSrc"
-      :alt="imgAlt"
-      :class="imgClass"
-      :data-key="imgDataKey"
-      :data-value="imgDataValue"
+    <button
+        :class="btnClass"
+        :data-key="btnDataKey"
+        :data-value="btnDataValue"
     >
-    {{ innerText }}
-  </button>
+        <img
+            :v-if="imgSrc != ''"
+            :src="currentUrl + imgSrc"
+            :alt="imgAlt"
+            :class="imgClass"
+            :data-key="imgDataKey"
+            :data-value="imgDataValue"
+        >
+        <span v-text="innerText" />
+    </button>
 </template>
 
 <script>
 export default {
-  name: "Button",
-  props: {
-    btnClass: {
-      type: String,
-      required: true,
+    name: 'Button',
+    props: {
+        btnClass: {
+            type: String,
+            required: true
+        },
+        btnDataKey: {
+            type: String,
+            required: false,
+            default: ''
+        },
+        btnDataValue: {
+            type: String,
+            required: false,
+            default: ''
+        },
+        imgSrc: {
+            type: String,
+            required: false,
+            default: ''
+        },
+        imgAlt: {
+            type: String,
+            required: false,
+            default: ''
+        },
+        imgClass: {
+            type: String,
+            required: false,
+            default: ''
+        },
+        imgDataKey: {
+            type: String,
+            required: false,
+            default: ''
+        },
+        imgDataValue: {
+            type: String,
+            required: false,
+            default: ''
+        },
+        innerText: {
+            type: String,
+            required: false,
+            default: ''
+        }
     },
-    btnDataKey: {
-      type: String,
-      required: false,
-      default: "",
+    data() {
+        return {
+            currentUrl: ''
+        };
     },
-    btnDataValue: {
-      type: String,
-      required: false,
-      default: "",
+    created() {},
+    mounted() {
+        this.currentUrl = window.location.href;
     },
-    imgSrc: {
-      type: String,
-      required: false,
-      default: "",
-    },
-    imgAlt: {
-      type: String,
-      required: false,
-      default: "",
-    },
-    imgClass: {
-      type: String,
-      required: false,
-      default: "",
-    },
-    imgDataKey: {
-      type: String,
-      required: false,
-      default: "",
-    },
-    imgDataValue: {
-      type: String,
-      required: false,
-      default: "",
-    },
-    innerText:{
-      type: String,
-      required: false,
-      default: "",
-    }
-  },
-  data() {
-    return {
-      currentUrl:'',
-
-    }
-  },
-  created () {
-  },
-  mounted(){
-    this.currentUrl = window.location.href;
-  },
-  methods: {
-  },
+    methods: {}
 };
 </script>
 
-<style>
-
-</style>
+<style></style>
