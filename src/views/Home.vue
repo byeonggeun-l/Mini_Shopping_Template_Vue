@@ -66,7 +66,9 @@
             />
         </section>
         
-        <ul class="items">
+        <ul
+            class="items"
+        >
             <Item
                 :items-array="itemsInfo"
                 :sort-state="sortState"
@@ -187,12 +189,11 @@ body {
 }
 
 
-
 .items {
   /* width: 60%;
   height: 50%; */
   width: 70vw;
-  height: 70vh;
+  height: 50vh;
   list-style: none;
   padding-left: 0;
   overflow-y: scroll;
