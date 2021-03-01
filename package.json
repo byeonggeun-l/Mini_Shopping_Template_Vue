@@ -1,5 +1,5 @@
 {
-  "name": "my_component",
+  "name": "mini_shopping_template_vue",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -42,7 +42,10 @@
     "parserOptions": {
       "parser": "babel-eslint"
     },
-    "rules": {}
+    "rules": {
+
+
+    }
   },
   "browserslist": [
     "> 1%",

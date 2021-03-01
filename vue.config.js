@@ -1,5 +1,5 @@
 module.exports = {
     publicPath:
-		process.env.NODE_ENV === 'production' ?'/my_component/' :'/',
+		process.env.NODE_ENV === 'production' ?'/Mini_Shopping_Template_Vue/' :'/',
     outputDir: 'docs',
 };
