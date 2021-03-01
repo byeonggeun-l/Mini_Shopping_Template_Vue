@@ -1,16 +1,5 @@
 <template>
     <div>
-<<<<<<< HEAD
-        <Informatiom 
-            :component-name="'Context_Menu_Original'"
-            :component-path="'/views/Components/01_Context_Menu/Context_Menu_Original'"
-            :component-link="'/context_menu_original'"
-            :component-desc="`목록을 클릭하면 해당 아이템에 대한 컨텍스트메뉴가 나타나고,<br />
-                메뉴를 선택하거나 그 외의 부분을 클릭하면 사라지는 팝오버 컴포넌트.<br />
-                팝오버는 한 번에 하나만 보인다.`"
-            :component-skills="`HTML, CSS, Javascript, EventListener, 이벤트 버블링.`"
-        />
-=======
         <!-- Logo -->
         <img
             class="logo"
@@ -77,31 +66,72 @@
             />
         </section>
         
-        <ul class="items">
+        <ul
+            class="items"
+        >
             <Item
                 :items-array="itemsInfo"
                 :sort-state="sortState"
             />
         </ul>
->>>>>>> parent of 05d156b (CSS Items 높이 수정.)
     </div>
 </template>
 
 <script>
-import Informatiom from '@/views/Information.vue';
+import axios from 'axios';
+
+import Button from '../components/Button.vue';
+import Item from '../components/Item.vue';
+
 export default {
     name: 'Home',
     components: {
-        Informatiom,
+        Button,
+        Item,
     },
+    data() {
+        return {
+            itemsInfo: [],
+            currentUrl: '',
+            sortState:
+                { 
+                    sortKey:'all',
+                    sortValue:'all'
+                },
+        };
+    },
+    mounted() {
+        this.currentUrl = window.location.href;
+
+        axios
+            .get(this.currentUrl + 'data/data.json')
+            .then(response => {
+                // const dataJson = JSON.stringify(response);
+                const tempArr = Object.values(response.data);
+                tempArr[0].forEach(element => {
+                    this.itemsInfo.push(element);
+                });
+            })
+            .catch(error => {
+                console.log(error);
+            })
+            .then(() => {});
+    },
+    methods: {
+        sortAll(){
+            this.sortState.sortKey = 'all';
+            this.sortState.sortValue = 'all';
+        },
+        selectSort(key, value){
+            this.sortState.sortKey = key;
+            this.sortState.sortValue = value;
+        }
+    }
 };
 </script>
 
 <style>
 
-<<<<<<< HEAD
-</style>
-=======
 
 
 
@@ -159,12 +189,11 @@ body {
 }
 
 
-
 .items {
   /* width: 60%;
   height: 50%; */
   width: 70vw;
-  height: 70vh;
+  height: 50vh;
   list-style: none;
   padding-left: 0;
   overflow-y: scroll;
@@ -232,4 +261,3 @@ body {
 
 
 </style>
->>>>>>> parent of 05d156b (CSS Items 높이 수정.)
